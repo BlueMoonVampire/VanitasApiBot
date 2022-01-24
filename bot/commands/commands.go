@@ -32,7 +32,7 @@ func CheckCmd(b *gotgbot.Bot, ext *ext.Context) error {
 
 	res, _ := utils.Check(user)
 
-	if res.Blacklisted != false {
+	if res.Blacklisted == true {
 		var text string = fmt.Sprintf("<b>USER</b> : %v\n<b>REASON</b> : %v\n<b>ENFORCER</b> : %v\n<b>Message</b> : %v", res.User, res.Reason, res.Enforcer, res.Message)
 		b.SendMessage(ext.Message.Chat.Id, text, &gotgbot.SendMessageOpts{
 			ParseMode: "html",

@@ -24,22 +24,22 @@ func Check(user int) (*types.CheckResponse, error) {
 
 func Ban(user, enforcer int, reason, admin_token string) {
 	var url string = "https://sylviorus-api.up.railway.app/ban"
-	
+
 	jsom := map[string]string{
-		"user" : string(user),
-		"enforcer" : string(enforcer),
-		"admin_token" : admin_token,
-		"reason" : reason,
+		"user":        string(user),
+		"enforcer":    string(enforcer),
+		"admin_token": admin_token,
+		"reason":      reason,
 	}
 
-	values,_ := json.Marshal(jsom)
+	values, _ := json.Marshal(jsom)
 
-	res , err := http.Post(url , "application/json" , bytes.NewBuffer(values))
+	res, err := http.Post(url, "application/json", bytes.NewBuffer(values))
 	if err != nil {
 		println(err)
 	}
 
-	str,_ := ioutil.ReadAll(res.Body)
+	str, _ := ioutil.ReadAll(res.Body)
 	println(string(str))
 
 }
@@ -52,7 +52,7 @@ func Unban(user int) {
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsom))
 	req.Header.Set("X-Custom-Header", "myvalue")
-    req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
