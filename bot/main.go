@@ -41,6 +41,7 @@ func main() {
 	dispatcher.AddHandler(handlers.NewCommand("check", commands.CheckCmd))
 	dispatcher.AddHandler(handlers.NewCommand("ban" , commands.BanCmd))
 	dispatcher.AddHandler(handlers.NewCommand("unban" , commands.UnBanCmd))
+	dispatcher.AddHandler(handlers.NewCommand("status" , commands.Status))
 
 	err = updater.StartPolling(b, &ext.PollingOpts{DropPendingUpdates: true})
 	if err != nil {
